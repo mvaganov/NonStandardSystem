@@ -1,0 +1,20 @@
+{
+  "name": "com.codegiraffe.nonstandard.system",
+  "version": "1.0.0",
+  "displayName": "NonStandard System",
+  "description": "* Proc, which can Delay functions and lambda expressions in a reflective way. This works in a Unity context, and is able to work in a pure C# context as well\n* Show is an abstraction over logging, with callbacks that can filter strings to be logged.\n* Global is a utility class that is intended to refrence a global dictionary of manager classes.\n* EventBind is a Unity convenience class that exposes functions which can assign methods to UnityEvent<> lists.* ObjectPtr is a UnityEngine.Object reference that can navigate it's own internal structure as part of assignment in the UnityEditor.\n* BuildTime places the build time of the project in a Resources folder, for reflective access at runtime.\n* PerfWarnOnSelection write a warning if an object is selected in edit mode. This is useful to explain to users in Edit Mode why performance is lagging (because an actively updated object is selected).\n* On2DEditorView performs callbacks when the user switches to 2D mode in the editor view.",
+  "unity": "2017.1",
+  "keywords": [
+    "library",
+    "utility",
+    "scripting",
+    "extensions",
+    "MonoBehaviour"
+  ],
+  "author": {
+    "name": "Michael Vaganov",
+    "email": "mvaganov@hotmail.com",
+    "url": "http://www.codegiraffe.com"
+  },
+  "type": "library"
+}
