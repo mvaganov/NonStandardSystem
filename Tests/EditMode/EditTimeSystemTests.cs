@@ -4,7 +4,7 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-public class StringifyTests
+public class EditTimeSystemTests
 {
     [Test]
     public void TestProcSystem() {

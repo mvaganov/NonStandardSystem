@@ -4,7 +4,7 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-public class RuntimeStringifyTests
+public class RuntimeSystemTests
 {
     // A Test behaves as an ordinary method
     [Test]
