@@ -5,6 +5,7 @@ namespace NonStandard {
 	public partial class Global : MonoBehaviour {
 		private static Global _instance;
 		private static List<Global> globs = new List<Global>();
+		public static bool IsQuitting { get; private set; }
 		public static Global Instance() {
 			if (_instance) { return _instance; }
 			Global[] found = FindObjectsOfType<Global>();
@@ -56,6 +57,11 @@ namespace NonStandard {
 					directory[t] = components[i];
 				}
 			}
+		}
+		void OnApplicationQuit() {
+			IsQuitting = true;
+			string c = "color", a = "#84f", b = "#48f";
+			Debug.Log("<" + c + "=" + a + ">AppInput</" + c + ">.IsQuitting = <" + c + "=" + b + ">true</" + c + ">;");
 		}
 	}
 }
