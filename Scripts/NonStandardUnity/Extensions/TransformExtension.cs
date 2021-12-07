@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
 namespace NonStandard.Extension {
-	public static class TransformExtention {
+	public static class TransformExtension {
 		public static string HierarchyPath(this Transform t, string separator = "/") {
 			StringBuilder sb = new StringBuilder();
 			sb.Append(t.name);
@@ -33,6 +34,16 @@ namespace NonStandard.Extension {
 				children[i] = toString(t.GetChild(i));
 			}
 			return children.JoinToString(separator);
+		}
+
+		public static void PopulateManifest(this Transform self, List<object> manifest) {
+			manifest.Add(self);
+			for (int i = 0; i < self.childCount; ++i) {
+				Transform child = self.GetChild(i);
+				if (child != null) {
+					PopulateManifest(child, manifest);
+				}
+			}
 		}
 	}
 }
