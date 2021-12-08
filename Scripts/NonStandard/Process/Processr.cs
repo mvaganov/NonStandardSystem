@@ -79,7 +79,9 @@ namespace NonStandard.Process {
 			}
 			return code;
 		}
-		public void Update() { SystemClock.Update(); }
+		public void Update() {
+			SystemClock.Update();
+		}
 
 		/// <summary>
 		/// convenience method: creates and <see cref="Incident"/> and passes it to any <see cref="Proc.edure"/>s waiting for it 

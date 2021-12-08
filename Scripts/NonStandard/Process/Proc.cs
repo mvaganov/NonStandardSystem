@@ -65,17 +65,17 @@ namespace NonStandard.Process {
 		public static Incident Reschedule(Incident incident, long when) => SystemClock.Reschedule(incident, when);
 		public static ulong UpdateCounter { get; set; }
 		public static void Update() { Main.Update(); ++UpdateCounter; }
-		public static Incident Delay(long delay, int incidentCode) { return SystemClock.Delay(delay, incidentCode); }
-		public static Incident Delay(long delay, string incidentId) { return SystemClock.Delay(delay, incidentId); }
 		public static Incident Delay(long delay, Action action) { return SystemClock.Delay(delay, action); }
 		public static Incident Delay(long delay, Proc.edure response) { return SystemClock.Delay(delay, response); }
 		public static Incident Delay(long delay, Proc.edureSimple response) { return SystemClock.Delay(delay, ConvertR(response, true)); }
-		public static Incident Enqueue(int incidentCode) { return SystemClock.Delay(0, incidentCode); }
-		public static Incident Enqueue(string incidentId) { return SystemClock.Delay(0, incidentId); }
-		public static Incident Enqueue(Proc.Id incidentId) { return SystemClock.Delay(0, incidentId.Value); }
+		public static Incident Delay(long delay, int incidentCode) { return SystemClock.Delay(delay, incidentCode); }
+		public static Incident Delay(long delay, string incidentId) { return SystemClock.Delay(delay, incidentId); }
 		public static Incident Enqueue(Action action) { return SystemClock.Delay(0, action); }
 		public static Incident Enqueue(Proc.edure response) { return SystemClock.Delay(0, response); }
 		public static Incident Enqueue(Proc.edureSimple response) { return SystemClock.Delay(0, ConvertR(response, true)); }
+		public static Incident Enqueue(int incidentCode) { return SystemClock.Delay(0, incidentCode); }
+		public static Incident Enqueue(string incidentId) { return SystemClock.Delay(0, incidentId); }
+		public static Incident Enqueue(Proc.Id incidentId) { return SystemClock.Delay(0, incidentId.Value); }
 		public static TimeKeeper SystemClock => Main.SystemClock;
 		
 		/// <summary>

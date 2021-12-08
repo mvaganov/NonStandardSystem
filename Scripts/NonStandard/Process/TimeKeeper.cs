@@ -184,7 +184,7 @@ namespace NonStandard.Process {
 				long delay = (long)(durationMs / calculations);
 				if (iterations < calculations) {
 					long nextTime = (long)(durationMs * (iterations + 1) / calculations) + started;
-					Delay(nextTime, DoThisLerp);
+					AddToSchedule(nextTime, DoThisLerp);
 				}
 				++iterations;
 			}
