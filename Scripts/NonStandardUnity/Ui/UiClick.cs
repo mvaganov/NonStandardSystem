@@ -19,8 +19,8 @@ namespace NonStandard.Ui {
 			return new PointerEventData(EventSystem.current) { position = position };
 		}
 #if ENABLE_INPUT_SYSTEM && !ENABLE_LEGACY_INPUT_MANAGER
-		public static Vector3 GetMousePosition() { return Mouse.current.position.ReadValue(); }
-		public static Vector3 GetMouseDelta() { return Mouse.current.delta.ReadValue(); }
+		public static Vector3 GetMousePosition() { return UnityEngine.InputSystem.Mouse.current.position.ReadValue(); }
+		public static Vector3 GetMouseDelta() { return UnityEngine.InputSystem.Mouse.current.delta.ReadValue(); }
 #else
 		public static Vector3 GetMousePosition() { return Input.mousePosition; }
 		public static Vector3 GetMouseDelta() { return new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0); }
