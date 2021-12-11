@@ -7,7 +7,7 @@ namespace NonStandard.Process {
 		public const string ScheduledId = "chrono";
 		public delegate long GetTimeFunction();
 		public GetTimeFunction GetTime = FileSystemTimeNow;
-		public static long FileSystemTimeNow() { return System.Environment.TickCount; }
+		public static long FileSystemTimeNow() { return System.Environment.TickCount; } // .NET 5/6 (Core 3.0) has TickCount64
 		public static long UtcMilliseconds() { return System.DateTime.Now.Ticks / System.TimeSpan.TicksPerMillisecond; }
 
 		public long now;
