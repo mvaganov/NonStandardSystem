@@ -1,5 +1,4 @@
-﻿using NonStandard.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 #if UNITY_EDITOR
 using UnityEditor.Events;
@@ -93,14 +92,6 @@ namespace NonStandard.Utility.UnityEditor {
 #else
 			System.Reflection.MethodInfo targetinfo = UnityEvent.GetValidMethodInfo(target, setMethodName, new Type[]{typeof(T)});
 			@event.AddListener((val) => targetinfo.Invoke(target, new object[] { val }));
-#endif
-		}
-		public void Bind(UnityEvent_string @event) {
-#if UNITY_EDITOR
-			UnityEventTools.AddPersistentListener(@event, GetAction<string>(target, methodName));
-#else
-			System.Reflection.MethodInfo targetinfo = UnityEvent.GetValidMethodInfo(target, setMethodName, new Type[0]);
-			@event.AddListener((str) => targetinfo.Invoke(target, new object[] { str }));
 #endif
 		}
 		public void Bind(UnityEvent @event) {
