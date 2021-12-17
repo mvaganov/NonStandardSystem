@@ -61,7 +61,7 @@ namespace NonStandard {
 		void OnApplicationQuit() {
 			IsQuitting = true;
 			string c = "color", a = "#84f", b = "#48f";
-			Debug.Log("<" + c + "=" + a + ">AppInput</" + c + ">.IsQuitting = <" + c + "=" + b + ">true</" + c + ">;");
+			Debug.Log("<" + c + "=" + a + ">"+nameof(Global)+"</" + c + ">.IsQuitting = <" + c + "=" + b + ">true</" + c + ">;");
 		}
 	}
 }
