@@ -18,6 +18,7 @@ namespace NonStandard.Utility.UnityEditor {
 		void Update() {
 			SceneView sv = SceneView.sceneViews[0] as SceneView;
 			if (sv.in2DMode != wasInEditorModeLastTime) {
+				//Debug.Log("2d view change "+ sv.in2DMode);
 				if (!wasInEditorModeLastTime) { on2DEditorEnter?.Invoke(); }
 				if (wasInEditorModeLastTime) { on2DEditorExit?.Invoke(); }
 			}

@@ -33,6 +33,6 @@ namespace NonStandard.Utility {
 				}
 			}
 		}
-		void FixedUpdate() { DoFollow(); }
+		void LateUpdate() { DoFollow(); }
 	}
 }
