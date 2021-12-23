@@ -16,7 +16,6 @@ namespace NonStandard {
 		public long GetUpdateCount() => updateCount;
 		public long GetGameTimeMs() => gameTimeMs;
 
-		public PauseEvents pauseEvents = new PauseEvents();
 		bool initialized;
 		public bool isPaused;
 		public bool freezeSimulationTimeOnPause = true;
@@ -41,26 +40,21 @@ namespace NonStandard {
 
 		public static long GetTime() { return Instance().GetGameTimeMs(); }
 
-		[System.Serializable]
-		public class PauseEvents {
-			[Tooltip("do this when time is paused")] public UnityEngine.Events.UnityEvent onPause = new UnityEngine.Events.UnityEvent();
-			[Tooltip("do this when time is unpaused")] public UnityEngine.Events.UnityEvent onUnpause = new UnityEngine.Events.UnityEvent();
-		}
 		public void Init() {
 			if (initialized) { return; }
 			initialized = true;
 			timer = new TimeKeeper(GetGameTimeMs);
 			mainProcessor = Proc.Main;
+			Platform.Instance.pauseEvents.onPause.AddListener(Pause);
+			Platform.Instance.pauseEvents.onUnpause.AddListener(Unpause);
 		}
 		public void Awake() { Init(); }
 		public void Pause() {
 			isPaused = true;
-			if (pauseEvents.onPause != null) { pauseEvents.onPause.Invoke(); }
 			if (freezeSimulationTimeOnPause) { UnityEngine.Time.timeScale = 0; }
 		}
 		public void Unpause() {
 			isPaused = false;
-			if (pauseEvents.onPause != null) { pauseEvents.onUnpause.Invoke(); }
 			if (freezeSimulationTimeOnPause) { UnityEngine.Time.timeScale = 1; }
 		}
 
