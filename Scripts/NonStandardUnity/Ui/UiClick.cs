@@ -4,8 +4,14 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace NonStandard.Ui {
+#if UNITY_EDITOR
+	[InitializeOnLoad] public static class UiClick_Define { static UiClick_Define() { Utility.Define.Add("NONSTANDARD_UICLICK"); } }
+#endif
 	public class UiClick : MonoBehaviour {
 		public bool ignoreClicksOnThisElement = true;
 		public static void Click(Button b, bool forceExecute = true) {

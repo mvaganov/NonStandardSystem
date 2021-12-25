@@ -3,8 +3,14 @@ using NonStandard.Utility.UnityEditor;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace NonStandard.Ui {
+#if UNITY_EDITOR
+	[InitializeOnLoad] public static class UiText_Define { static UiText_Define() { Utility.Define.Add("NONSTANDARD_UITEXT"); } }
+#endif
 	public class UiText : MonoBehaviour {
 		public UnityEvent_string setText;
 		public UnityEvent_string OnSetText => setText;
