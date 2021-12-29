@@ -45,8 +45,8 @@ namespace NonStandard {
 			initialized = true;
 			timer = new TimeKeeper(GetGameTimeMs);
 			mainProcessor = Proc.Main;
-			Platform.Instance.pauseEvents.onPause.AddListener(Pause);
-			Platform.Instance.pauseEvents.onUnpause.AddListener(Unpause);
+			LifeCycle.Instance.pauseEvents.onPause.AddListener(Pause);
+			LifeCycle.Instance.pauseEvents.onUnpause.AddListener(Unpause);
 		}
 		public void Awake() { Init(); }
 		public void Pause() {
