@@ -16,7 +16,7 @@ namespace NonStandard.Utility.UnityEditor {
 				Directory.CreateDirectory(resourcesDir);
 			}
 			string pathToWriteTo = resourcesDir + P + "app_build_time.txt";
-			File.WriteAllText(pathToWriteTo, DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"));
+			System.IO.File.WriteAllText(pathToWriteTo, DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"));
 			AssetDatabase.Refresh(ImportAssetOptions.ForceUpdate);
 		}
 	}
