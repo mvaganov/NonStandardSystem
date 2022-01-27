@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using NonStandard.Extension;
+using UnityEngine;
 
 namespace NonStandard.Data {
 	public partial struct ColorRGBA {
@@ -65,7 +66,12 @@ namespace NonStandard.Data {
 
 		public static implicit operator ColorRGBA(ConsoleColor c) { return defaultColors[(int)c]; }
 		public static implicit operator ConsoleColor(ColorRGBA c) { return c.ClosestConsoleColor(); }
-
+#if UNITY_2017_1_OR_NEWER
+		public static implicit operator ColorRGBA(Color c) { return new ColorRGBA((byte)(c.r.Clamp01()*255), (byte)(c.g.Clamp01() * 255), (byte)(c.b.Clamp01() * 255), (byte)(c.a.Clamp01() * 255)); }
+		public static implicit operator Color(ColorRGBA c) { return new Color(c.r/255f,c.g/255f,c.b/255f,c.a/255f); }
+		public static implicit operator ColorRGBA(Color32 c) { return new ColorRGBA(c.r, c.g, c.b, c.a); }
+		public static implicit operator Color32(ColorRGBA c) { return new Color32(c.r, c.g, c.b, c.a); }
+#endif
 		public static int Closest(ColorRGBA needle, ColorRGBA[] haystack) {
 			int best = -1;
 			if (haystack == null || haystack.Length == 0) return best;
