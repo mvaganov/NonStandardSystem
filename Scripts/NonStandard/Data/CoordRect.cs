@@ -35,6 +35,8 @@ namespace NonStandard.Data {
 		public short PositionX { get => min.col; set { int w = Width; min.x = value; max.x = min.x + (short)w; } }
 		public short PositionY { get => min.row; set { int h = Height; min.y = value; max.y = min.y + (short)h; } }
 
+		public bool IsValid => Width >= 0 && Height >= 0;
+
 		public Coord GetPosition() => Position;
 		public Coord GetSize() => Size;
 		public CoordRect GetRect() => this;
