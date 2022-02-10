@@ -4,7 +4,7 @@ namespace NonStandard.Data {
 	public interface IPosition { Coord GetPosition(); }
 
 	[System.Serializable]
-	public partial struct Coord {
+	public partial struct Coord : IComparable<Coord> {
 		public short row, col;
 
 		public Coord(int col, int row) {
@@ -146,6 +146,14 @@ namespace NonStandard.Data {
 
 		public void SetConsoleCursorPosition() => Console.SetCursorPosition(col, row);
 		public static Coord GetCursorPosition() => new Coord(Console.CursorLeft, Console.CursorTop);
+
+		public int CompareTo(Coord other) {
+			if (row < other.row) return -1;
+			if (row > other.row) return 1;
+			if (col < other.col) return -1;
+			if (col > other.col) return 1;
+			return 0;
+		}
 
 		public short this[int i] {
 			get {
