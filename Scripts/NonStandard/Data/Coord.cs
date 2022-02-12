@@ -51,6 +51,7 @@ namespace NonStandard.Data {
 		public static bool operator !=(Coord a, Coord b) => !a.Equals(b);
 		public static Coord operator +(Coord a, Coord b) => new Coord(a.col + b.col, a.row + b.row);
 		public static Coord operator *(Coord a, Coord b) => new Coord(a.col * b.col, a.row * b.row);
+		public static Coord operator *(Coord a, int n) => new Coord(a.col * n, a.row * n);
 		public static Coord operator -(Coord a, Coord b) => new Coord(a.col - b.col, a.row - b.row);
 		public static Coord operator -(Coord a) => new Coord(-a.col, -a.row);
 
