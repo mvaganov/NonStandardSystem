@@ -47,8 +47,8 @@ namespace NonStandard.Data {
 		}
 		public bool Equals(Coord c) => row == c.row && col == c.col;
 
-		public static bool operator ==(Coord a, Coord b) => a.Equals(b);
-		public static bool operator !=(Coord a, Coord b) => !a.Equals(b);
+		public static bool operator ==(Coord a, Coord b) => a.row == b.row && a.col == b.col;
+		public static bool operator !=(Coord a, Coord b) => a.row != b.row || a.col != b.col;
 		public static Coord operator +(Coord a, Coord b) => new Coord(a.col + b.col, a.row + b.row);
 		public static Coord operator *(Coord a, Coord b) => new Coord(a.col * b.col, a.row * b.row);
 		public static Coord operator *(Coord a, int n) => new Coord(a.col * n, a.row * n);
@@ -172,6 +172,9 @@ namespace NonStandard.Data {
 				}
 			}
 		}
+
+		public void SetX(int value) { col = (byte)value; }
+		public void SetY(int value) { row = (byte)value; }
 	}
 
 	public static class MatrixCoordExtension {
