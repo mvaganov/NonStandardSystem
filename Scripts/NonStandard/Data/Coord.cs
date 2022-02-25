@@ -172,9 +172,15 @@ namespace NonStandard.Data {
 				}
 			}
 		}
+	}
 
-		public void SetX(int value) { col = (byte)value; }
-		public void SetY(int value) { row = (byte)value; }
+	public static class IPositionExtension {
+		public static int CompareTo(this IPosition self, IPosition other) {
+			return self.GetPosition().CompareTo(other.GetPosition());
+		}
+		public static int ManhattanDistance(this IPosition self, IPosition other) {
+			return Coord.ManhattanDistance(self.GetPosition(), other.GetPosition());
+		}
 	}
 
 	public static class MatrixCoordExtension {
