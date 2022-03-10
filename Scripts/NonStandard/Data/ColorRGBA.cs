@@ -6,7 +6,7 @@ using NonStandard.Extension;
 using UnityEngine;
 
 namespace NonStandard.Data {
-	public partial struct ColorRGBA {
+	public partial struct ColorRGBA : IComparable, IComparable<ColorRGBA> {
 		public byte r, g, b, a;
 		public byte R => r;
 		public byte G => g;
@@ -248,7 +248,13 @@ namespace NonStandard.Data {
 			case short n: result = itocBGRA((uint)n); return true;
 			case float n: result = itocBGRA((uint)n); return true;
 			case double n: result = itocBGRA((uint)n); return true;
-			case string s: result = TryParseString(s, out ColorRGBA c) ? c : Magenta; return true;
+			case string s: result = TryParseString(s, out ColorRGBA strc) ? strc : Magenta; return true;
+#if UNITY_2017_1_OR_NEWER
+			case Color c: result = new ColorRGBA(
+				(byte)(c.r.Clamp01() * 255), (byte)(c.g.Clamp01() * 255), 
+				(byte)(c.b.Clamp01() * 255), (byte)(c.a.Clamp01() * 255)); return true;
+			case Color32 c32: result = new ColorRGBA(c32.r, c32.g, c32.b, c32.a); return true;
+#endif
 			}
 			throw new Exception($"cannot convert {o.GetType()} to ColorRGBA");
 		}
@@ -279,6 +285,21 @@ namespace NonStandard.Data {
 			b = (float)Math.Sqrt(b / count);
 			a = (float)Math.Sqrt(a / count);
 			return new ColorRGBA((byte)r.Clamp0(255), (byte)g.Clamp0(255), (byte)b.Clamp0(255), (byte)a.Clamp0(255));
+		}
+
+		public int CompareTo(object obj) {
+			if (TryConvert(obj, out ColorRGBA color)) {
+				return CompareTo(color);
+			}
+			throw new Exception("unsupported comparison, [" + this + "] vs [" + obj + "]");
+		}
+
+		public int CompareTo(ColorRGBA other) {
+			int v = a.CompareTo(other.a); if (v != 0) return v;
+			v = r.CompareTo(other.r); if (v != 0) return v;
+			v = g.CompareTo(other.g); if (v != 0) return v;
+			v = b.CompareTo(other.b); if (v != 0) return v;
+			return 0;
 		}
 	}
 }
