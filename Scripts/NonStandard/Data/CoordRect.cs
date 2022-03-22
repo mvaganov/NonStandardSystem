@@ -8,7 +8,7 @@ namespace NonStandard.Data {
 	public struct CoordRect : IPosition, IRect {
 		public Coord min, max;
 
-		public static readonly CoordRect Invalid = new CoordRect(Coord.One, Coord.Zero);
+		public static readonly CoordRect Invalid = new CoordRect(Coord.Zero, Coord.NegativeOne);
 		public CoordRect(Coord min, Coord max) {
 			this.min = min;
 			this.max = max;
