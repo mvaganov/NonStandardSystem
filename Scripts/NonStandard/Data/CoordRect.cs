@@ -18,7 +18,11 @@ namespace NonStandard.Data {
 			min = new Coord(x, y);
 			max = new Coord(x + width, y + height);
 		}
-
+		public bool Equals(CoordRect other) { return min == other.min && max == other.max; }
+		public static bool operator==(CoordRect left, CoordRect right) => left.Equals(right);
+		public static bool operator !=(CoordRect left, CoordRect right) => !left.Equals(right);
+		public override bool Equals(object obj) { return obj is CoordRect rect && Equals(rect); }
+		public override int GetHashCode() { return min.GetHashCode() ^ max.GetHashCode(); }
 		public Coord Min { get => min; set => min = value; }
 		public Coord Max { get => max; set => max = value; }
 		public int X { get => min.col; set => min.col = (short)value; }
