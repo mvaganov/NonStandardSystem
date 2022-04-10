@@ -2,17 +2,19 @@ using System;
 using System.Collections.Generic;
 
 namespace NonStandard.Data {
-	public struct TextSpan : IComparable<TextSpan> {
+	[System.Serializable] public struct TextSpan : IComparable<TextSpan> {
 		/// <summary>
 		/// inclusive
 		/// </summary>
 		public Coord start, end;
-		public object tag;
+		//public object tag;
+		public string tag;
 
 		public TextSpan(Coord whereCursorStarted, Coord whereCursorEnded, object tag) : this() {
 			this.start = whereCursorStarted;
 			this.end = whereCursorEnded;
-			this.tag = tag;
+			//this.tag = tag;
+			this.tag = tag.ToString();
 		}
 
 		public int CompareTo(TextSpan other) {
@@ -30,16 +32,14 @@ namespace NonStandard.Data {
 			return true;
 		}
 
-		public static List<TextSpan> GetSpans(IEnumerable<TextSpan> spans, Coord coord) {
-			List<TextSpan> found = new List<TextSpan>();
-			foreach (TextSpan span in spans) {
+		public static void GetSpans(IEnumerable<TextSpan> orderedListOfSpans, Coord coord, List<TextSpan> out_found) {
+			foreach (TextSpan span in orderedListOfSpans) {
 				if (span.Contains(coord)) {
-					found.Add(span);
+					out_found.Add(span);
 				}
 				// assume spans are in order, so stop once they start out of range.
 				if (span.start.row > coord.row) { break; }
 			}
-			return found;
 		}
 	}
 }
